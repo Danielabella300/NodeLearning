@@ -5,13 +5,13 @@ const forecast = (latitude, longitude, callback) => {
     request({
         url: url,
         json: true
-    }, (error, response) => {
+    }, (error, {body}) => {
         if (error) {
             callback('Unable to connect to weather services!', undefined)
-        } else if (response.body.error){
+        } else if (body.error){
             callback('Could not find coordinates. Enter new coordinates', undefined)
         } else {
-            callback(undefined, "The weather results for " + response.body.location.name +'.' + ' It is currently ' + response.body.current.temperature + ' degrees out. There is a ' + response.body.current.precip + '% chance of rain.')
+            callback(undefined, "The weather results for " + body.location.name + ': ' + body.current.weather_descriptions[0] +'.' + ' It is currently ' + body.current.temperature + ' degrees out. There is a ' + body.current.precip + '% chance of rain.')
         }
     })
 }

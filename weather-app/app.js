@@ -7,18 +7,18 @@ const argLocation = process.argv[2];
 if (!argLocation || argLocation.length <= 2) {
     console.log('Provide a legitimate ADDRESS!! greater than 3')
 } else {
-    geocode(argLocation, (error, data) => {
+    geocode(argLocation, (error, {latitude, longitude, location} = {})  => {
         if (error) {
             return console.log(error)
         }
-        console.log(data.latitude)
-        console.log(data.longitude)
+        console.log(latitude)
+        console.log(longitude)
 
-        forecast(data.latitude, data.longitude, (error, forecastData) => {
+        forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
                 return console.log(error)
             }
-            console.log(data.location)
+            console.log(location)
             console.log(forecastData)
         })
     })
