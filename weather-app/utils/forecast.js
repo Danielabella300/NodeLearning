@@ -11,6 +11,7 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error){
             callback('Could not find coordinates. Enter new coordinates', undefined)
         } else {
+            
             callback(undefined, "The weather results for " + body.location.name + ': ' + body.current.weather_descriptions[0] +'.' + ' It is currently ' + body.current.temperature + ' degrees out. There is a ' + body.current.precip + '% chance of rain.')
         }
     })
