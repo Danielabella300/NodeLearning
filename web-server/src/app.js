@@ -27,18 +27,15 @@ app.get('', (req, res) => {
     })
 })
 
-app.get('/help', (req, res) =>
-{
-    res.render('help', 
-    {
+app.get('/help', (req, res) => {
+    res.render('help', {
         helpText: 'Helpful Text',
         title: 'Help',
         name: 'DJ Abella'
     })
 })
 
-app.get('/about', (req,res) =>
-{
+app.get('/about', (req, res) => {
     res.render('about', {
         title: 'About me',
         name: 'DJ Abella'
@@ -53,17 +50,15 @@ app.get('/weather', (req, res) => {
 })
 
 app.get('/help/*', (req, res) => {
-    res.render('404',
-    {
+    res.render('404', {
         title: 'About me',
         name: 'DJ Abella',
         errorMessage: 'No further pages in directory'
     })
 })
 
-app.get('*', (req, res) => {    
-    res.render('404',
-    {
+app.get('*', (req, res) => {
+    res.render('404', {
         title: 'About me',
         name: 'DJ Abella',
         errorMessage: 'Page not found'
