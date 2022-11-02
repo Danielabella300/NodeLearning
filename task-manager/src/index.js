@@ -94,6 +94,7 @@ app.delete('/users/:id', async (req, res) => {
         res.status(500).send(e)
     }
 })
+
 app.get('/tasks', async (req, res) => {
     try {
         const task = await Task.find({})
@@ -147,6 +148,18 @@ app.patch('/tasks/:id', async (req, res) => {
         res.send(task)
     } catch (e) {
         res.status(400).send(e)
+    }
+})
+
+app.delete('/tasks/:id', async (req, res) => {
+    try {
+        const task = await Task.findByIdAndDelete(req.params.id)
+        if(!task) {
+            res.status(404).send
+        }
+        res.send(task)
+    } catch (e) {
+        res.status(500).send(e)
     }
 })
 
