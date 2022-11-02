@@ -118,6 +118,26 @@ app.get('/tasks/:id', async (req, res) => {
     // })
 })
 
+app.patch('tasks/:id', async (req, res) => {
+    const update = Object.keys(req.body)
+    const allowedUpdates = ['description', 'completed']
+    const isValidOperation = updates.every(update => allowedUpdates.includes(update))
+
+    if(!isValidOperation) {
+        res.status(400).send({error: "Invalid update"})
+    } 
+
+    try {
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators:true}) 
+        if(!task) {
+            res.status(404).send()
+        }
+        res.send(task)
+    } catch (e) {
+        res.status(400).send(e)
+    }
+})
+
 app.post('/tasks', async (req, res) => {
     const task = new Task(req.body)
     try {
