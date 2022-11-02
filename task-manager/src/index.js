@@ -82,6 +82,7 @@ app.patch('/users/:id', async (req, res) => {
         res.status(400).send(e)
     }
 })
+
 app.get('/tasks', async (req, res) => {
     try {
         const task = await Task.find({})
@@ -118,13 +119,13 @@ app.get('/tasks/:id', async (req, res) => {
     // })
 })
 
-app.patch('tasks/:id', async (req, res) => {
-    const update = Object.keys(req.body)
+app.patch('/tasks/:id', async (req, res) => {
+    const updates = Object.keys(req.body)
     const allowedUpdates = ['description', 'completed']
-    const isValidOperation = updates.every(update => allowedUpdates.includes(update))
+    const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 
     if(!isValidOperation) {
-        res.status(400).send({error: "Invalid update"})
+        return res.status(400).send({error: "Invalid update"})
     } 
 
     try {
