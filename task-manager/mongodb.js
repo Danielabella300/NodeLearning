@@ -58,11 +58,12 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true}, (error, client) => 
     // }).catch((error) => {
     //     console.log(error)
     // })
-    db.collection('tasks').deleteOne({
-        description: 'clean the house'
-    }).then((result) => {
-        console.log(result)
-    }).catch((error) => {
-        console.log(error)
-    })
+    
+    // db.collection('tasks').deleteOne({
+    //     description: 'clean the house'
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
 })
